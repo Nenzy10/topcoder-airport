@@ -1,6 +1,6 @@
 # Airport Retail Media Platform
 
-> **Playground deployment (for reviewers):** a hosted playground of this exact build is being deployed and its URL will be added in an updated submission before the deadline. The complete experience — simulation, decision engine, all five role dashboards, QR claim flow — runs identically from the one-command local start below (`docker compose up`, then http://localhost:8080). No accounts, API keys or cloud services are needed.
+> **Playground (for reviewers): https://topcoder-airport.onrender.com** — the live hosted deployment of this exact build (Render free tier; if the service is asleep, allow ~30–60s for the first load to wake it). Suggested 5-minute path: press Play in the simulation header, jump time to 14:09 and watch the Gate 42 screen select the SkyScent perfume campaign at 14:10 (the brief's worked example), open "Why this ad?", claim the promo from the passenger screen, then check the redemption in the Retailer dashboard. Source: https://github.com/Nenzy10/topcoder-airport — the identical experience also runs locally via the one-command start below (`docker compose up`, then http://localhost:8080). No accounts, API keys or cloud services are needed.
 
 
 
