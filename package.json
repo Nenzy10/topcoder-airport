@@ -1,0 +1,12 @@
+{
+  "name": "airport-retail-media-platform",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n server,web \"npm --prefix server start\" \"npm --prefix web run dev\"",
+    "build": "npm --prefix web run build",
+    "start": "npm --prefix server start",
+    "test": "npm --prefix server test"
+  },
+  "devDependencies": { "concurrently": "^8.2.2" }
+}

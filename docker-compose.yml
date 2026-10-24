@@ -1,0 +1,13 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - FLIGHT_SOURCE=mock-aidx
+      - AIRPORT_NAME=Aurora International Airport
+      - CURRENCY=USD
+      # Set to your LAN/public base so promo QR codes open the claim page from a phone:
+      - CLAIM_BASE_URL=http://localhost:8080
+    restart: unless-stopped
