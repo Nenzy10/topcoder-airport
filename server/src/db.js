@@ -42,7 +42,14 @@ export class Store {
   logDecision(rec) {
     this.decisionLog.push(rec);
     if (this.decisionLog.length > 4000) this.decisionLog.splice(0, this.decisionLog.length - 4000);
-    this.db.prepare(`INSERT INTO decisions (at, screen_id, data) VALUES (?, ?, ?)`).run(rec.at, rec.screenId, JSON.stringify(rec));
+    // Stability fix (2026-10-24): do NOT also insert into the SQLite
+    // `decisions` table. The store runs on an in-memory DB (':memory:'),
+    // so that table gave no durability — but at ~167 online screens logging
+    // a full candidate record every sim-minute it grew unbounded in RAM
+    // and tripped Render's free-tier memory limit (alert 2026-10-24 06:11
+    // Dubai). The capped in-memory ring above is the only consumer
+    // (routes/api.js reads store.decisionLog, loadAll only re-reads the
+    // last 2000 rows at boot, when an in-memory DB is empty anyway).
   }
   addRedemption(r) {
     this.db.prepare(`INSERT OR REPLACE INTO redemptions (id, code, at, data) VALUES (?, ?, ?, ?)`)
